@@ -1,0 +1,198 @@
+:root {
+  --accent: #1f8ed6;
+  --accent-2: #ff6b6b;
+  --bg1: #012a63;
+  --bg2: #0647a6;
+  --bg3: #0a66d1;
+  --card-bg: #ffffff;
+  --muted: #8b98a6;
+}
+
+/* ---------------- Global reset & full-page background ---------------- */
+* { box-sizing: border-box; }
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Inter, system-ui, Arial, sans-serif;
+  /* full-page gradient applied at root so it always covers the viewport */
+  background: linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 50%, var(--bg3) 100%);
+  background-attachment: fixed;
+  color: #e6eef6;
+}
+
+/* App container left transparent so root gradient is visible everywhere */
+.app-root {
+  min-height: 100vh;
+  background: transparent;
+  color: inherit;
+}
+
+/* ---------------- LOGIN ---------------- */
+/* login-screen uses transparent background so the root gradient shows across full width */
+.login-screen {
+  display: flex;
+  min-height: 100vh;
+  align-items: stretch;
+  background: transparent;
+}
+
+/* left artwork column (keeps decorative overlay but transparent base) */
+.login-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  /* subtle translucent overlay to make image pop against the gradient */
+  background: linear-gradient(135deg, rgba(2,30,70,0.18), rgba(10,20,40,0.14));
+}
+
+/* subtle decorative shapes */
+.login-left::before {
+  content: "";
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  right: -120px;
+  top: -120px;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.03), rgba(255,255,255,0));
+  transform: rotate(12deg);
+  pointer-events: none;
+}
+
+/* central seal / image */
+.seal {
+  width: 420px;
+  height: 420px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(6,18,30,0.5), inset 0 0 80px rgba(255,255,255,0.02);
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+/* image inside seal */
+.seal img {
+  width: 95%;
+  height: 95%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* right form column */
+.login-right {
+  width: 420px;
+  padding: 36px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: transparent;
+}
+
+/* the card */
+.login-card {
+  width: 100%;
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 14px 36px rgba(6,18,30,0.45);
+  color: #0b2536;
+  border: 1px solid rgba(14,48,70,0.06);
+}
+
+/* heading uses accent */
+.login-card h2 {
+  text-align: left;
+  color: var(--accent);
+  margin: 0 0 10px;
+  font-weight: 800;
+  font-size: 28px;
+  letter-spacing: -0.3px;
+}
+
+/* helper line under title */
+.login-card .sub {
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+/* form fields */
+.form-field { margin-bottom: 12px; }
+.form-field input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(14,48,70,0.08);
+  background: #fbfdff;
+  color: #0b2536;
+  outline: none;
+  transition: box-shadow .15s, border-color .15s;
+}
+.form-field input:focus {
+  box-shadow: 0 6px 20px rgba(31,142,214,0.12);
+  border-color: var(--accent);
+}
+
+/* login button - gradient */
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: white;
+  border: none;
+  border-radius: 10px;
+  margin-top: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 8px 20px rgba(31,142,214,0.16);
+  transition: transform .12s ease, box-shadow .12s;
+}
+.login-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(31,142,214,0.18); }
+
+.small-red { color: #d9534f; font-size: 13px; margin-top: 8px; }
+
+/* bottom links & layout */
+.login-card .misc { display:flex; justify-content:space-between; align-items:center; margin-top:12px; font-size:13px; color:#6b7a86; }
+.login-links { text-align:center; margin-top:14px; font-size:13px; color:#657884; }
+
+/* remember checkbox */
+.login-card label { color: #486273; font-size: 14px; }
+
+/* ---------------- DASHBOARD (kept from original) ---------------- */
+.dashboard{display:flex;min-height:100vh}
+.sidebar{width:260px;background:#fff;border-right:1px solid #e6eef6;padding:18px}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.brand .logo{width:44px;height:44px;border-radius:8px;background:var(--accent);display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+.menu{margin-top:12px}
+.menu-item{padding:10px;border-radius:8px;color:#2b4a6f;display:flex;align-items:center;gap:10px;margin-bottom:8px;cursor:pointer}
+.menu-item:hover{background:rgba(31,142,214,0.06)}
+.content{flex:1;padding:34px}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.welcome{font-size:22px;color:#2b4a6f}
+.profile{display:flex;align-items:center;gap:10px}
+.profile .avatar{width:40px;height:40px;border-radius:50%;background:#ffb400;display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.heritage-card{background:white;border-radius:10px;padding:16px;display:flex;gap:12px;align-items:flex-start;box-shadow:0 6px 18px rgba(10,30,60,0.06)}
+.heritage-card .thumb{width:120px;height:88px;border-radius:8px;flex-shrink:0;background-size:cover;background-position:center}
+.heritage-card h3{margin:0;color:#195b8c}
+.heritage-card p{margin:6px 0 0;color:#4d657f}
+
+/* small screen responsiveness */
+@media (max-width: 880px) {
+  .login-right { display: none; }
+  .login-left { flex: 1; }
+  .sidebar { display: none; }
+  .content { padding: 18px; }
+}
+
+/* center the left image on small screens */
+@media (max-width: 520px) {
+  .seal { width: 280px; height: 280px; }
+}
